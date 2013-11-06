@@ -1,29 +1,32 @@
 'use strict'
 
 # Declare app level module which depends on filters, and services
-angular.module('app', ['app.filters', 'app.services', 'app.directives'])
+angular.module('app', [
+  'app.controllers', 'app.filters', 'app.services', 'app.directives',
+  'partials'
+])
 .config ['$routeProvider', '$locationProvider', ($routeProvider, $locationProvider) ->
   $routeProvider
 
     .when '/',
-      templateUrl: 'partials/index'
-      controller:  IndexCtrl
+      templateUrl: '/partials/index.html'
+      controller:  'IndexCtrl'
 
     .when '/addPost',
-      templateUrl: 'partials/addPost'
-      controller:  AddPostCtrl
+      templateUrl: '/partials/addPost.html'
+      controller:  'AddPostCtrl'
 
     .when '/readPost/:id',
-      templateUrl: 'partials/readPost'
-      controller:  ReadPostCtrl
+      templateUrl: '/partials/readPost.html'
+      controller:  'ReadPostCtrl'
 
     .when '/editPost/:id',
-      templateUrl: 'partials/editPost'
-      controller:  EditPostCtrl
+      templateUrl: '/partials/editPost.html'
+      controller:  'EditPostCtrl'
 
     .when '/deletePost/:id',
-      templateUrl: 'partials/deletePost'
-      controller:  DeletePostCtrl
+      templateUrl: '/partials/deletePost.html'
+      controller:  'DeletePostCtrl'
 
     .otherwise redirectTo: '/'
 
