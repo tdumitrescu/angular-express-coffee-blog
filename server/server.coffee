@@ -35,7 +35,9 @@ if app.get('env') is 'development'
 #
 
 # JSON API
-app.get '/api/name', api.name
+app.get "/api/posts",    api.posts
+app.get "/api/post/:id", api.post
+app.get "/api/*",        (req, res) -> res.send 'Not found', 404
 
 # serve index for all other routes
 app.get '*', (req, res) -> res.sendfile "#{assetsPath}/index.html"
