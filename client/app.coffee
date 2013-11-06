@@ -1,26 +1,31 @@
 'use strict'
 
 # Declare app level module which depends on filters, and services
-angular.module('app', [
-  'ngCookies'
-  'ngResource'
-  'app.controllers'
-  'app.directives'
-  'app.filters'
-  'app.services'
-  'partials'
-])
-.config ($routeProvider, $locationProvider) ->
+angular.module('app', ['app.filters', 'app.services', 'app.directives'])
+.config ['$routeProvider', '$locationProvider', ($routeProvider, $locationProvider) ->
   $routeProvider
 
-    .when '/view1',
-      templateUrl: '/partials/partial1.html'
-      controller: 'MyCtrl1'
+    .when '/',
+      templateUrl: 'partials/index'
+      controller:  IndexCtrl
 
-    .when '/view2',
-      templateUrl: '/partials/partial2.html'
-      controller: 'MyCtrl2'
+    .when '/addPost',
+      templateUrl: 'partials/addPost'
+      controller:  AddPostCtrl
 
-    .otherwise redirectTo: '/view1'
+    .when '/readPost/:id',
+      templateUrl: 'partials/readPost'
+      controller:  ReadPostCtrl
+
+    .when '/editPost/:id',
+      templateUrl: 'partials/editPost'
+      controller:  EditPostCtrl
+
+    .when '/deletePost/:id',
+      templateUrl: 'partials/deletePost'
+      controller:  DeletePostCtrl
+
+    .otherwise redirectTo: '/'
 
   $locationProvider.html5Mode true
+  ]
