@@ -23,7 +23,6 @@
 
     "css-brunch": ">= 1.0 < 1.8",
     "less-brunch": ">= 1.0 < 1.8",
-    "stylus-brunch": ">= 1.0 < 1.8",
 
     "auto-reload-brunch": ">= 1.0 < 1.8",
 
