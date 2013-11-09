@@ -1,8 +1,8 @@
 'use strict'
 
 # Declare app level module which depends on filters, and services
-angular.module('app', [
-  'app.controllers', 'app.filters', 'app.services', 'app.directives',
+angular.module('blogApp', [
+  'blogApp.controllers', 'blogApp.filters', 'blogApp.services', 'blogApp.directives',
   'partials'
 ])
 .config ['$routeProvider', '$locationProvider', ($routeProvider, $locationProvider) ->

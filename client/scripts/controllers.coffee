@@ -2,7 +2,7 @@
 
 ### Controllers ###
 
-angular.module('app.controllers', [])
+angular.module('blogApp.controllers', [])
 
 .controller('IndexCtrl', ["$scope", "$http", ($scope, $http) ->
   $http.get("/api/posts")

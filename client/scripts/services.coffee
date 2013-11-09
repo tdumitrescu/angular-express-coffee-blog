@@ -2,6 +2,6 @@
 
 ### Sevices ###
 
-angular.module('app.services', [])
+angular.module('blogApp.services', [])
 
 .factory 'version', -> "0.1"

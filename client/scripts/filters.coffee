@@ -2,7 +2,7 @@
 
 ### Filters ###
 
-angular.module('app.filters', [])
+angular.module('blogApp.filters', [])
 
 .filter('interpolate', [
   'version',
