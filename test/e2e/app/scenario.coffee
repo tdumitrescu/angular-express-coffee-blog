@@ -1,16 +1,16 @@
 "use strict"
 
 # http://docs.angularjs.org/guide/dev_guide.e2e-testing 
-describe "my app", ->
+describe "example blog app", ->
   beforeEach ->
     browser().navigateTo "/"
 
-  it "should automatically redirect to /todo when location hash/fragment is empty", ->
-    expect(browser().location().url()).toBe "/todo"
+  it "stays on the root path when location hash/fragment is empty", ->
+    expect(browser().location().url()).toBe "/"
 
-  it "should navigate to /view1 when the View 1 link in nav is clicked", ->
-    element(".nav a[href=\"#/view1\"]").click()
-    expect(browser().location().url()).toBe "/view1"
+  it "navigates to /addPost when the user clicks the Add Post link", ->
+    element('a[href="/addPost"]').click()
+    expect(browser().location().url()).toBe "/addPost"
 
   describe "todo", ->
 
