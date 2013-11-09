@@ -60,7 +60,7 @@ module.exports = function(karma) {
     // - Safari (only Mac)
     // - PhantomJS
     // - IE (only Windows)
-    browsers: ['Chrome'],
+    browsers: ['PhantomJS'],
 
 
     // If browser does not capture in given timeout [ms], kill it
@@ -69,9 +69,10 @@ module.exports = function(karma) {
 
     // Plugins to load
     plugins: [
-        'karma-ng-scenario',
-        'karma-coffee-preprocessor',
-        'karma-chrome-launcher'
+      'karma-ng-scenario',
+      'karma-coffee-preprocessor',
+      'karma-chrome-launcher',
+      'karma-phantomjs-launcher'
     ],
 
 
@@ -81,6 +82,6 @@ module.exports = function(karma) {
 
     // Continuous Integration mode
     // if true, it capture browsers, run tests and exit
-    singleRun: false
+    singleRun: true
   });
 };
