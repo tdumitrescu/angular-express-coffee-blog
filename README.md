@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/tdumitrescu/angular-express-coffee-blog.png?branch=master)](https://travis-ci.org/tdumitrescu/angular-express-coffee-blog)
+
 # Angular + Express + Brunch + Coffeescript Example App
 
 A Coffeescript implementation of the [example app](https://github.com/btford/angular-express-blog) from Brian Ford's blog post ["Writing an AngularJS App with an Express + Node.js Backend"](http://briantford.com/blog/angular-express.html), with a somewhat different client-server architecture.
