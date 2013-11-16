@@ -7,14 +7,13 @@ describe "controllers", ->
 
   beforeEach(module "blogApp.controllers")
 
-  describe "MyCtrl1", ->
-
-    it "should make scope testable", inject ($rootScope, $controller) ->
+  describe "IndexCtrl", ->
+    it "fetches posts list from the backend", inject ($rootScope, $controller, $httpBackend) ->
       scope = $rootScope.$new()
-      ctrl = $controller "MyCtrl1",
-        $scope: scope,
-      expect(scope.onePlusOne).toEqual(2)
+      fakePosts = [{title: "meow"}, {title: "moo"}]
 
-  describe "MyCtrl2", ->
+      $httpBackend.expectGET('/api/posts').respond posts: fakePosts
+      ctrl = $controller "IndexCtrl", $scope: scope
+      $httpBackend.flush()
 
-    it "should..."
+      expect(scope.posts).toEqual fakePosts
