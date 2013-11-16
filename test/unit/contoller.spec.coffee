@@ -5,7 +5,7 @@
 # TODO figure out how to test Controllers that use modules
 describe "controllers", ->
 
-  beforeEach(module "app.controllers")
+  beforeEach(module "blogApp.controllers")
 
   describe "MyCtrl1", ->
 
