@@ -9,6 +9,7 @@ server     = require "#{serverPath}/server"
 models     = require "#{serverPath}/models"
 posts      = models.posts
 PORT       = 3434
+API_BASE   = "http://localhost:#{PORT}/api"
 
 before (done) ->
   server.startServer PORT
@@ -16,7 +17,7 @@ before (done) ->
 
 describe "server API", ->
   describe "GET /posts", ->
-    getPosts = (callback) -> request "http://localhost:#{PORT}/api/posts", callback
+    getPosts = (callback) -> request "#{API_BASE}/posts", callback
 
     it "returns data for all posts", (done) ->
       getPosts (error, response, body) ->
@@ -31,4 +32,14 @@ describe "server API", ->
     it "includes the title of each post", (done) ->
       getPosts (error, response, body) ->
         expect(JSON.parse(body).posts[0].title).to.eql(posts[0].title)
+        done()
+
+  describe "POST /post", ->
+    postData = {title: 'bla', text: 'blablabla'}
+    postPost = (callback) -> request.post "#{API_BASE}/post", form: postData, callback
+
+    it "creates a new post", (done) ->
+      postLengthBefore = posts.length
+      postPost (error, response, body) ->
+        expect(posts).to.have.length(postLengthBefore + 1)
         done()
