@@ -43,3 +43,10 @@ describe "server API", ->
       postPost (error, response, body) ->
         expect(posts).to.have.length(postLengthBefore + 1)
         done()
+
+    it "assigns the correct post data", (done) ->
+      newPostIndex = posts.length
+      postPost (error, response, body) ->
+        expect(posts[newPostIndex].title).to.eql(postData.title)
+        expect(posts[newPostIndex].text).to.eql(postData.text)
+        done()
