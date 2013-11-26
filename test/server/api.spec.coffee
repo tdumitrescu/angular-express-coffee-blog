@@ -50,3 +50,20 @@ describe "server API", ->
         expect(posts[newPostIndex].title).to.eql(postData.title)
         expect(posts[newPostIndex].text).to.eql(postData.text)
         done()
+
+  describe "PUT /post/:id", ->
+    putData = {title: 'bla', text: 'blablabla'}
+    postId = posts.length - 1
+    putPost = (callback) -> request.put "#{API_BASE}/post/#{postId}", form: putData, callback
+
+    it "does not create a new post", (done) ->
+      postLengthBefore = posts.length
+      putPost (error, response, body) ->
+        expect(posts).to.have.length(postLengthBefore)
+        done()
+
+    it "replaces the given post's data", (done) ->
+      putPost (error, response, body) ->
+        expect(posts[postId].title).to.eql(putData.title)
+        expect(posts[postId].text).to.eql(putData.text)
+        done()
