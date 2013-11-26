@@ -79,6 +79,18 @@ describe "server API", ->
     postId = 0
     deletePost = (callback, id = postId) -> request.del "#{API_BASE}/post/#{id}", callback
 
+    it "deletes a post", (done) ->
+      postLengthBefore = posts.length
+      deletePost (error, response, body) ->
+        expect(posts).to.have.length(postLengthBefore - 1)
+        done()
+
+    it "shifts the other posts back", (done) ->
+      shiftedPost = posts[postId + 1]
+      deletePost (error, response, body) ->
+        expect(posts[postId]).to.eql(shiftedPost)
+        done()
+
     it "returns false for invalid IDs", (done) ->
       deleteCallback = (error, response, body) ->
         expect(JSON.parse(body)).to.be(false)
