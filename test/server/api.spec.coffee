@@ -54,7 +54,8 @@ describe "server API", ->
   describe "PUT /post/:id", ->
     putData = {title: 'bla', text: 'blablabla'}
     postId = posts.length - 1
-    putPost = (callback) -> request.put "#{API_BASE}/post/#{postId}", form: putData, callback
+    putPost = (callback, id = postId) ->
+      request.put "#{API_BASE}/post/#{id}", form: putData, callback
 
     it "does not create a new post", (done) ->
       postLengthBefore = posts.length
@@ -67,3 +68,9 @@ describe "server API", ->
         expect(posts[postId].title).to.eql(putData.title)
         expect(posts[postId].text).to.eql(putData.text)
         done()
+
+    it "returns false for invalid IDs", (done) ->
+      putCallback = (error, response, body) ->
+        expect(JSON.parse(body)).to.be(false)
+        done()
+      putPost putCallback, -5
