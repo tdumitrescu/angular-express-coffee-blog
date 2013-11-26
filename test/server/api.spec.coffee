@@ -74,3 +74,13 @@ describe "server API", ->
         expect(JSON.parse(body)).to.be(false)
         done()
       putPost putCallback, -5
+
+  describe "DELETE /post/:id", ->
+    postId = 0
+    deletePost = (callback, id = postId) -> request.del "#{API_BASE}/post/#{id}", callback
+
+    it "returns false for invalid IDs", (done) ->
+      deleteCallback = (error, response, body) ->
+        expect(JSON.parse(body)).to.be(false)
+        done()
+      deletePost deleteCallback, -5
